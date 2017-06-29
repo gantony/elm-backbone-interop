@@ -39,7 +39,7 @@ update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
     Change s ->
-      ( { model | value = s}, Cmd.none )
+      ( { model | value = s}, check s )
     Check ->
       ( model, check model.value )
     Suggest s ->

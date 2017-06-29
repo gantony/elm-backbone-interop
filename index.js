@@ -13,6 +13,7 @@ $(function(){
 
         initialize: function() {
             this.listenTo(this.model, 'change', this.renderLabel);
+            this.listenTo(this.model, 'change', this.send);
         },
 
         update: function(event) {
