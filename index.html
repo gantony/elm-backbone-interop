@@ -25,6 +25,10 @@
         <script>
             var node = document.getElementById("elm-container");
             window.elmView = Elm.ElmView.embed(node);
+
+            window.elmView.ports.check.subscribe(function(elmValue) {
+                window.model.set("value", elmValue);
+            });
         </script>
     </body>
 </html>

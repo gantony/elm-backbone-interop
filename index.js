@@ -26,7 +26,7 @@ $(function(){
         },
 
         template: _.template(
-            '<div><input id="input"><button id="send">Send to Elm</button><div id="label"><%= value %></div></div>'
+            '<div><input id="input" value="<%= value %>"><button id="send">Send to Elm</button><div id="label"><%= value %></div></div>'
         ),
 
         render: function(){
@@ -37,7 +37,8 @@ $(function(){
         // The fact that I need this is annoying, forgot about that stuff...
         // If I just re-render the full view on model change, the input is 
         // redrawn and I lose focus and the content in the input :(
-        renderLabel: function(){
+        renderLabel: function() {
+            this.$("#input")[0].value = this.model.get("value");
             this.$("#label").text(this.model.get("value"));
             return this;
         }
