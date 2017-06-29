@@ -3,7 +3,6 @@ port module ElmView exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import String
 
 
 main =
@@ -19,13 +18,11 @@ main =
 
 type alias Model =
   { value : String
-  -- , output : String
-  -- , displayValue : String
   }
 
 init : (Model, Cmd Msg)
 init =
-  (Model "", Cmd.none)
+  (Model "The Elm model initial value", Cmd.none)
 
 
 -- UPDATE
@@ -46,7 +43,7 @@ update msg model =
     Check ->
       ( model, check model.value )
     Suggest s ->
-      ( model, Cmd.none ) 
+      ( { model | value = s }, Cmd.none ) 
 
 -- SUBSCRIPTIONS
 
@@ -62,7 +59,11 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
   div []
-    [ input [ onInput Change] []
+    [ input 
+      [ onInput Change
+      , value model.value
+      ] 
+      []
     , button [ onClick Check ] [ text "Send to Backbone" ]
     , div [] [ text (model.value) ]
     ]

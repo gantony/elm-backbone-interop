@@ -22,7 +22,7 @@ $(function(){
 
         send: function() {
             console.log("Sending our value to elm...");
-            this.model.trigger("Ireallychanged");
+            elmView.ports.suggestions.send(this.model.get("value"));
         },
 
         template: _.template(
@@ -48,4 +48,5 @@ $(function(){
     window.view = new View({model: window.model});
     window.view.render();
 
+    
 });
